@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../schemas/userSchema");
-const SALT_ROUNDS = process.env.SALT;
+const SALT_ROUNDS = +process.env.SALT;
 require("dotenv").config();
 
 const registeredUser = (req, res) => {
@@ -11,7 +11,6 @@ const registeredUser = (req, res) => {
         email: req.body.email,
         password: hashedPass,
       });
-      console.log(hashedPass);
       user
         .save()
         .then((result) => {

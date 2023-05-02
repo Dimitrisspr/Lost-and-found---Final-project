@@ -1,11 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const adoptSchema = new mongoose.Schema({
-  image: {
-    data: Buffer,  
-    contentType: String,
-    description: String
-  }
-})
+  image: Buffer,
+  contentType: String,
+  description: String,
+});
 
-module.exports = mongoose.model("adopt", adoptSchema)
+const adoptModel = mongoose.model("adopt", adoptSchema);
+module.exports = adoptModel;
