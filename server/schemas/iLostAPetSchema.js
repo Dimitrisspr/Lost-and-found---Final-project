@@ -9,6 +9,7 @@ const lostSchema = new mongoose.Schema({
       type: String,
       enum: ['Point'],
       required: true,
+      
       coordinates:{
         type: [Number],
         required: true
@@ -19,4 +20,5 @@ const lostSchema = new mongoose.Schema({
   ownersID: String
 })
 
-module.exports = mongoose.model("lost", lostSchema)
+const lostModel = mongoose.model("lost", lostSchema)
+module.exports = lostModel;

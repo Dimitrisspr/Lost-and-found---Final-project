@@ -6,8 +6,8 @@ const foundSchema = new mongoose.Schema({
   photo: {data: Buffer, contentType: String},
   location: {
     type: {
-      type: String,
-      enum: ['Point'],
+      type: String, 
+      enum: ['Point'], 
       required: true
     },
     coordinates: {
@@ -17,5 +17,6 @@ const foundSchema = new mongoose.Schema({
   },
   time: Date,
 })
+
 const foundModel = mongoose.model("found", foundSchema)
 module.exports = foundModel;
