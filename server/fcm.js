@@ -1,5 +1,5 @@
 let FCM = require("fcm-node");
-let serverKey = "<SERVER_KEY>";
+let serverKey = "BH5CtbVUa5l9h6NKyO20mrpTxWsWZXW0TVeIzgtmbeph5a7q-KQp4POVlxaa6JsE3rAk_XJtS0rQdJfVjA-WMZM";
 let fcm = new FCM(serverKey);
 
 let message = {
