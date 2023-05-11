@@ -1,17 +1,17 @@
 let FCM = require("fcm-node");
-let serverKey = "BH5CtbVUa5l9h6NKyO20mrpTxWsWZXW0TVeIzgtmbeph5a7q-KQp4POVlxaa6JsE3rAk_XJtS0rQdJfVjA-WMZM";
+let serverKey = "AAAAThRKaEM:APA91bG0phclU84Ut5O4sD1EqW6WIhgpDfY4HbqCcUA1Cr-z7_MnO2JKyDHXmrdBE9ItA67tnM9k1RX350GCu5zr1Yos8DgOuQx15x5e1wxArE1jJQVntfJjgiZYr6w6sdhPiD0itju_";
 let fcm = new FCM(serverKey);
 
 let message = {
-  to: "<DEVICE_TOKEN>",
+  to: "cgJhLN157NmmVw56dCx91y:APA91bEgKGjCgiF4Yann5ribqf3pDJeDyk8OC1gCKQCzSQXMGNjbM0S9yfjqgfJqtxu72KwiXFw3A_0SY1YRKNQX1INqxCf16n04PaWH9UTzYnrZGCp54yCX4e-UB33y9zhsvIlGSuyd",
   notification: {
-    title: "Notification TestAPP",
-    body: '{"Message from node js app"}',
+    title: "Pet found",
+    body: 'Your pet is found!',
   },
 
   data: {
     //you can send only notification or only data(or include both)
-    title: "ok cdfsdsdfsd",
+    title: "ok !",
     body: '{"name" : "ok google ogrlrl","product_id" : "123","final_price" : "0.00035"}',
   },
 };
@@ -25,3 +25,4 @@ fcm.send(message, function (err, response) {
     console.log("Successfully sent with response: ", response);
   }
 });
+
