@@ -1,10 +1,13 @@
-import Notification from "./Components/Notification"; 
-import Firebase from "./Components/Firebase"
+import Notification from "./Components/Notification";
+import "./Firebase";
+import Register from "./Components/FreeComponents/Register"
+import Login from "./Components/FreeComponents/Login";
 
 function App() {
   return <div className="App">
+    <Login />
+    <Register />
     <Notification />
-    <Firebase />
   </div>;
 }
 
