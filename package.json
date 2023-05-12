@@ -1,0 +1,23 @@
+{
+  "name": "lost-and-found---final-project",
+  "version": "1.0.0",
+  "description": "This app's purpose is to help pet owners that lost their pet find it again. If you lost or found a pet you can post a picture of it here, with some comments, you can show on map where exactly you saw if for last time if you lost it or where you found it and the app will send a notification if your pet is found.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dimitrisspr/Lost-and-found---Final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dimitrisspr/Lost-and-found---Final-project/issues"
+  },
+  "homepage": "https://github.com/Dimitrisspr/Lost-and-found---Final-project#readme",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
+  }
+}
