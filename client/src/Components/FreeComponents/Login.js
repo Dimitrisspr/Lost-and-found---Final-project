@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import PostLoginData from "./PostLoginData";
+//import PostLoginData from "./PostLoginData";
 //import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -9,52 +10,59 @@ function Login() {
   const [password, setPassword] = useState("");
 
   //const navigate = useNavigate()
+  try {
+    async function handleSubmit(e) {
+      e.preventDefault();
+      let loggedIn = { username, email, password };
 
-  async function handleSubmit(e, userData) {
-    e.preventDefault();
-    let response = await PostLoginData(userData);
-
-    if (response) {
-      alert("Logged in successfully!");
+      const response = await axios.post(
+        "http://localhost:8000/login",
+        loggedIn
+      );
+      console.log(response);
+      if (response) {
+        alert("logged in");
+      }
+      if (response.status === 200) {
+        localStorage.setItem("token", response);
+        console.log("Logged in Successfully");
+      } else {
+        console.log("wrong password");
+      }
     }
-    if (response.status === 200) {
-      localStorage.setItem("token", response.data);
-    } else {
-      console.log("incorrect username or password");
-    }
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            id="username"
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            id="email"
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            id="password"
+          />
+          <button onClick={handleSubmit}>Login</button>
+        </form>
+      </div>
+    );
+  } catch (error) {
+    console.log(error);
   }
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label for="username">Username</label>
-        <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          id="username"
-        />
-        <label for="email">Email</label>
-        <input
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          id="email"
-        />
-        <label for="password">Password</label>
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          id="password"
-        />
-        <button>Login</button>
-      </form>
-      {/* <button onClick={navigate}>If you haven't register yet, do it here</button> */}
-    </div>
-  );
 }
-
 export default Login;

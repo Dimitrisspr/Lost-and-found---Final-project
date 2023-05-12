@@ -15,16 +15,16 @@ function Register() {
         "http://localhost:8000/register",
         newUser
       );
-      if (response.status === 200) {
-        alert(response.data.msg);
+      if (response) {
+        alert("Registered");
       } else {
-        alert("try again");
+        console.log("didn't register");
       }
       console.log(response);
     }
     return (
       <form onSubmit={handleSubmit}>
-        <label for="username">Username</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
           placeholder="username"
@@ -32,7 +32,7 @@ function Register() {
           onChange={(e) => setUsername(e.target.value)}
           id="username"
         />
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           placeholder="email"
@@ -40,7 +40,7 @@ function Register() {
           onChange={(e) => setEmail(e.target.value)}
           id="email"
         />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           placeholder="password"
