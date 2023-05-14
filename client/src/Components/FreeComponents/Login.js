@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-//import PostLoginData from "./PostLoginData";
 //import { useNavigate } from "react-router-dom";
 import axios from "axios";
+//import { useEffect } from "react";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -11,8 +11,13 @@ function Login() {
 
   //const navigate = useNavigate()
   try {
+    const refreshPage = () => {
+      window.location.reload();
+    };
+
     async function handleSubmit(e) {
       e.preventDefault();
+
       let loggedIn = { username, email, password };
 
       const response = await axios.post(
@@ -26,10 +31,12 @@ function Login() {
       if (response.status === 200) {
         localStorage.setItem("token", response);
         console.log("Logged in Successfully");
+        refreshPage();
       } else {
         console.log("wrong password");
       }
     }
+
     return (
       <div>
         <form onSubmit={handleSubmit}>

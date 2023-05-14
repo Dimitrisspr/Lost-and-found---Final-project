@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   try {
     async function handleSubmit(e) {
       e.preventDefault();
@@ -21,7 +24,9 @@ function Register() {
         console.log("didn't register");
       }
       console.log(response);
+      navigate("/login");
     }
+
     return (
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>

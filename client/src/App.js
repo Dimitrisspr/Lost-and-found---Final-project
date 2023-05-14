@@ -4,19 +4,42 @@ import Homepage from "./Components/FreeComponents/Homepage";
 import Register from "./Components/FreeComponents/Register";
 import Login from "./Components/FreeComponents/Login";
 import Navbar from "./Components/FreeComponents/Navbar";
+import IFoundAPet from "./Components/ProtectedComponents/IFoundAPet";
+import ILostAPet from "./Components/ProtectedComponents/ILostAPet";
+import Adopt from "./Components/FreeComponents/AdoptMe";
+import Logout from "./Components/ProtectedComponents/Logout";
+
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-
+      <Notification />
+      <Navbar />
       <div className="container">
-        <Notification/>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/adopt" element={<Adopt />} />
+          <Route path="/lostpet" element={<ILostAPet />} />
+          <Route path="/foundpet" element={<IFoundAPet />} />
+          <Route path="/logout" element={<Logout />} />
+          {/* {!token ? (
+            <>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/adopt" element={<Adopt />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/lostpet" element={<ILostAPet />} />
+              <Route path="/foundpet" element={<IFoundAPet />} />
+              <Route path="/logout" element={<Logout />} />
+            </>
+          )} */}
         </Routes>
       </div>
     </div>
