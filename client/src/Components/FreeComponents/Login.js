@@ -29,7 +29,7 @@ function Login() {
         alert("logged in");
       }
       if (response.status === 200) {
-        localStorage.setItem("token", response);
+        localStorage.setItem("token", response.data);
         console.log("Logged in Successfully");
        refreshPage();
       } else {

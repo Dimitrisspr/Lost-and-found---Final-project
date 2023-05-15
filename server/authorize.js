@@ -8,9 +8,12 @@ const verifyToken = async (req, res, next) => {
       res.status(403).send({ msg: "unauthorized " });
     }
     const token = await req.headers.authorization.split(" ") [1];
+    if(!token){
+      res.staus(401).send({msg: "Invalid token"})
+    }
     let validatedToken = jwt.verify(token, PRIVATE);
     if(!validatedToken){
-      res.status(400).send({msg: "non validated token"})
+      return res.send({ message: "Can't verify token..." });
     }
     req.user = validatedToken;
     next();
