@@ -10,6 +10,7 @@ const registeredUser = (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: hashedPass,
+        ownersid: req.body.ownersid
       });
       user
         .save()

@@ -2,17 +2,22 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {fcmid} from "../../Firebase";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let ownersid = '';
   const navigate = useNavigate();
 
   try {
     async function handleSubmit(e) {
       e.preventDefault();
-      let newUser = { username, email, password };
+      let newUser = { username, email, password, ownersid };
+      
+      newUser["ownersid"] = fcmid;
+      console.log(newUser);
 
       let response = await axios.post(
         "http://localhost:8000/register",

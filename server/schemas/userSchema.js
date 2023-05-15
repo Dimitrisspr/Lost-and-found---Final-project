@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "Email is required"],
   },
   password: { type: String, required: [true, "Password is required"] },
+  ownersid: String
 });
 
 module.exports = mongoose.model.User || mongoose.model("User", userSchema);

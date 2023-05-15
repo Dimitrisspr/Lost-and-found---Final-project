@@ -16,6 +16,7 @@ const verifyToken = async (req, res, next) => {
     next();
   } catch (error) {
     res.status(500).send({ msg: "server problem" });
+    console.log(error);
   }
 };
 

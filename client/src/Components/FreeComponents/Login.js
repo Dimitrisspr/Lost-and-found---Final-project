@@ -31,7 +31,7 @@ function Login() {
       if (response.status === 200) {
         localStorage.setItem("token", response);
         console.log("Logged in Successfully");
-        refreshPage();
+       refreshPage();
       } else {
         console.log("wrong password");
       }

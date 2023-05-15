@@ -17,7 +17,8 @@ const lostSchema = new mongoose.Schema({
     }
   },
   time: Date,
-  ownersID: String
+  ownersID: String,
+  ownersFCMID: String,
 })
 
 const lostModel = mongoose.model("lost", lostSchema)

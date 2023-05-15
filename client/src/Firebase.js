@@ -14,6 +14,8 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const messaging = getMessaging();
 
+var fcmid = ''
+
 export const requestForToken = () => {
   return getToken(messaging, {
     vapidKey:
@@ -21,6 +23,7 @@ export const requestForToken = () => {
   })
     .then((currentToken) => {
       if (currentToken) {
+        fcmid = currentToken;
         console.log("current token for client: ", currentToken);
         // Perform any other neccessary action with the token
       } else {
@@ -42,3 +45,5 @@ export const onMessageListener = () =>
       resolve(payload);
     });
   });
+
+export  {fcmid};
