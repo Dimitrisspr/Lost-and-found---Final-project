@@ -3,25 +3,12 @@ const mongoose = require("mongoose");
 const lostSchema = new mongoose.Schema({
   name: String,
   description: String,
-  photo: {data: Buffer, contentType: String},
+  photo: String,
   location: String,
-  // {
-  //   type: {
-  //     type: String,
-  //     enum: ['Point'],
-  //     required: true,
-      
-  //     coordinates:{
-  //       type: [Number],
-  //       required: true
-  //     }
-  //   }
-  // },
   time: String,
-  // Date,
-  // ownersID: String,
+  //ownersid: String,
   // ownersFCMID: String,
-})
+});
 
-const lostModel = mongoose.model("lost", lostSchema)
+const lostModel = mongoose.model("lost", lostSchema);
 module.exports = lostModel;

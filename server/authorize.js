@@ -1,18 +1,19 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const PRIVATE = process.env.SECRET;
+const SECRET_KEY = process.env.SECRET;
 
 const verifyToken = async (req, res, next) => {
   try {
     if (!req.headers.authorization) {
-      res.status(403).send({ msg: "unauthorized " });
+      res.status(401).send({ msg: "unauthorized " });
     }
-    const token = await req.headers.authorization.split(" ") [1];
-    if(!token){
-      res.staus(401).send({msg: "Invalid token"})
+    const token = await req.headers.authorization.split(" ")[1];
+
+    if (!token) {
+      res.status(401).send({ msg: "Invalid token" });
     }
-    let validatedToken = jwt.verify(token, PRIVATE);
-    if(!validatedToken){
+    let validatedToken = jwt.verify(token, SECRET_KEY);
+    if (!validatedToken) {
       return res.send({ message: "Can't verify token..." });
     }
     req.user = validatedToken;

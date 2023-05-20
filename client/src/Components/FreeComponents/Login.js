@@ -15,7 +15,7 @@ function Login() {
       window.location.reload();
     };
 
-    async function handleSubmit(e) {
+    async function loginUser(e) {
       e.preventDefault();
 
       let loggedIn = { username, email, password };
@@ -24,14 +24,16 @@ function Login() {
         "http://localhost:8000/login",
         loggedIn
       );
-      console.log(response);
+      //console.log(response);
       if (response) {
         alert("logged in");
       }
-      if (response.status === 200) {
+
+       if(response.status === 200) {
         localStorage.setItem("token", response.data);
-        console.log("Logged in Successfully");
-       refreshPage();
+
+       // console.log("Logged in Successfully");
+      refreshPage();
       } else {
         console.log("wrong password");
       }
@@ -39,7 +41,7 @@ function Login() {
 
     return (
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={loginUser}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -64,7 +66,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             id="password"
           />
-          <button onClick={handleSubmit}>Login</button>
+          <button>Login</button>
         </form>
       </div>
     );

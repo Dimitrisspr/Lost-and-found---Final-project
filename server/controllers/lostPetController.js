@@ -1,7 +1,6 @@
 const lostModel = require("../schemas/iLostAPetSchema");
-
 const lostPet = async (req, res) => {
-  const { name, description, photo, location, time } = req.body;
+  const { name, description, photo, location, time, ownersid } = req.body;
 
   try {
     await lostModel.create({
@@ -10,8 +9,8 @@ const lostPet = async (req, res) => {
       photo,
       location,
       time,
-      // ownersID,
-      // ownersFCMID,
+      ownersid,
+      
     });
     res.status(200).send({ msg: "Lost pet created successfully" });
   } catch (error) {
@@ -20,4 +19,15 @@ const lostPet = async (req, res) => {
   }
 };
 
-module.exports = lostPet;
+const getLostPets = async (req,res)=> {
+  try {
+    const lostPets = await lostModel.find();
+  res.send(lostPets)
+  } catch (error) {
+    res.status(500).send(error)
+  }
+  
+}
+
+module.exports = { lostPet , getLostPets};
+

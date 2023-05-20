@@ -1,10 +1,10 @@
 const foundModel = require("../schemas/iFoundAPetSchema");
 
 const foundPet = async (req, res)=>{
-  const {name, photo, location, time} = req.body;
+  const {description, photo, location, time} = req.body;
 try {
   await foundModel.create({
-    name,
+    description,
     photo,
     location,
     time,
@@ -16,4 +16,14 @@ try {
 }
 }
 
-module.exports = foundPet;
+const getFoundPets = async (req, res)=>{
+  try {
+   const foundPets = await foundModel.find();
+   res.send(foundPets)
+
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
+module.exports = {foundPet, getFoundPets};

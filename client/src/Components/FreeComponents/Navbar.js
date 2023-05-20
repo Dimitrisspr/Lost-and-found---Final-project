@@ -24,6 +24,8 @@ function Navbar() {
               <Link to="/foundpet">I found a pet</Link>
               <Link to="/lostpet">I lost a pet</Link>
               <Link to="/logout">Logout</Link>
+              <Link to="/getLostPets">Here are some lost pets!</Link>
+              <Link to="/getFoundPets">Here are some found pets!</Link>
             </ul>
           </nav>
         </div>

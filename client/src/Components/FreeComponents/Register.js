@@ -8,15 +8,18 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let ownersid = '';
+  //let ownersid = '';
+  let ownersFCMID = '';
   const navigate = useNavigate();
 
   try {
     async function handleSubmit(e) {
       e.preventDefault();
-      let newUser = { username, email, password, ownersid };
+      let newUser = { username, email, password };
+
+      //newUser["ownersid"] = newUser._id;
       
-      newUser["ownersid"] = fcmid;
+      newUser["ownersFCMID"] = fcmid;
       console.log(newUser);
 
       let response = await axios.post(

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { fcmid } from "../../Firebase";
 
 function ILostAPet() {
   const [name, setName] = useState("");
@@ -8,23 +10,36 @@ function ILostAPet() {
   const [photo, setPhoto] = useState("");
   const [location, setLocation] = useState("");
   const [time, setTime] = useState("");
-  let ownersID = "";
-  let ownersFCMID = "";
+  //let ownersID = "";
+  //let ownersFCMID = fcmid;
+  const navigate = useNavigate();
 
   async function LostPetForm(e) {
     e.preventDefault();
     let lostPet = { name, description, photo, location, time };
-    const token = localStorage.getItem("token");
 
-    await axios
-      .post("http://localhost:8000/auth/lostpet", lostPet, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => alert(res.data));
-    console.log(token);
+    const token = localStorage.getItem("token");
+    await axios.post("http://localhost:8000/auth/lostpet", lostPet, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    navigate("/getLostPets");
   }
+
+  function covertToBase64(e) {
+    console.log(e);
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      setPhoto(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("error: ", error);
+    };
+  }
+
   return (
     <div>
       <form onSubmit={LostPetForm}>
@@ -44,11 +59,17 @@ function ILostAPet() {
         />
         <label htmlFor="photo">Pets Photo</label>
         <input
-          type="text"
-          value={photo}
+          type="file"
+          filename="file"
           placeholder="pets photo"
-          onChange={(e) => setPhoto(e.target.value)}
+          accept="image/*"
+          onChange={covertToBase64}
         />
+        {photo == "" || photo == null ? (
+          ""
+        ) : (
+          <img width={100} height={100} src={photo} />
+        )}
         <label htmlFor="location">Where you lost it</label>
         <input
           type="text"
@@ -63,7 +84,9 @@ function ILostAPet() {
           placeholder="When you lost it"
           onChange={(e) => setTime(e.target.value)}
         />
-        <button >Submit</button>
+        <button type="submit" onClick={LostPetForm}>
+          Submit
+        </button>
       </form>
     </div>
   );

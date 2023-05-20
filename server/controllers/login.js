@@ -11,18 +11,20 @@ const loggedin = async (req, res) => {
     if (!user) {
       return res.status(400).send("Wrong email or password");
     }
+
     const validatedUser = await bcrypt.compare(password, user.password);
     if (!validatedUser) {
-      res.status(400).send("wrong password");
-    } else {
-      const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY);
+     return res.status(400).send("wrong password");
+    } 
+      const token = jwt.sign({ id: user._id, email: user.email, ownersid: user.ownersid }, SECRET_KEY);
       console.log(token);
-      res.status(200).send({msg: "Login success", token})
-    }
+      res.status(200).send(token)
+    
   } catch (error) {
     res.status(500).send({ msg: "error", error });
     console.log(error);
   }
 };
+
 
 module.exports = loggedin;

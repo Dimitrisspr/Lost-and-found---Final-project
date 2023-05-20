@@ -10,6 +10,10 @@ app.use(express.json());
 app.use(cors());
 app.use("/", freeRoutes);
 app.use("/auth", verifyToken, protectedRoutes);
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "100mb", extended: true, parameterLimit:50000}));
+
 
 let FCM = require("fcm-node");
 let serverKey =
@@ -20,6 +24,7 @@ app.post("/test", async (req, res) => {
   try {
     let message = {
       to: "cgJhLN157NmmVw56dCx91y:APA91bEgKGjCgiF4Yann5ribqf3pDJeDyk8OC1gCKQCzSQXMGNjbM0S9yfjqgfJqtxu72KwiXFw3A_0SY1YRKNQX1INqxCf16n04PaWH9UTzYnrZGCp54yCX4e-UB33y9zhsvIlGSuyd",
+      
       notification: {
         title: "Pet found",
         body: "Your pet is found!",
@@ -46,6 +51,7 @@ app.post("/test", async (req, res) => {
     console.log(error);
   }
 });
+
 
 app.listen(port, () => {
   console.log(`our server listens on port ${port}`);

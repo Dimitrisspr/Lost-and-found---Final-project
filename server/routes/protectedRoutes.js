@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const foundModel = require("../controllers/foundPetController");
-const lostModel = require("../controllers/lostPetController");
+const {foundPet, getFoundPets} = require("../controllers/foundPetController");
+const {lostPet, getLostPets} = require("../controllers/lostPetController");
 const authorize = require('../authorize')
 
-router.post("/foundpet",authorize, foundModel)
-router.post("/lostpet",authorize, lostModel);
+
+router.post("/foundpet",authorize, foundPet);
+router.post("/lostpet",authorize, lostPet);
+router.get("/getLostPets", authorize, getLostPets);
+router.get("/getFoundPets", authorize, getFoundPets)
 
 module.exports = router;
