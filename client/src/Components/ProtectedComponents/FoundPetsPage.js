@@ -27,7 +27,7 @@ function FoundPetsPage() {
       {founds.map((pet) => (
         <div key={pet.id}>
           <p>{pet.description}</p>
-          <p>{pet.photo}</p>
+          <img src={pet.photo}width={200} height={200}/>
           <p>{pet.location}</p>
           <p>{pet.time}</p>
         </div>

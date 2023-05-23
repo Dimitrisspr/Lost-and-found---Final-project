@@ -1,6 +1,6 @@
 const lostModel = require("../schemas/iLostAPetSchema");
 const lostPet = async (req, res) => {
-  const { name, description, photo, location, time, ownersid } = req.body;
+  const { name, description, photo, location, time, ownersFCMID } = req.body;
 
   try {
     await lostModel.create({
@@ -9,7 +9,7 @@ const lostPet = async (req, res) => {
       photo,
       location,
       time,
-      ownersid,
+      ownersFCMID,
       
     });
     res.status(200).send({ msg: "Lost pet created successfully" });

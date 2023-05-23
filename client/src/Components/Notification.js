@@ -3,8 +3,19 @@ import toast, { Toaster } from "react-hot-toast";
 import { requestForToken, onMessageListener } from "../Firebase";
 
 const Notification = () => {
-  const [notification, setNotification] = useState({ title: "", body: "" });
-  const notify = () => toast(<ToastDisplay />);
+
+  
+  const [notification, setNotification] = useState({
+    title: "You pet is found!",
+    body: "Your pet has been found!",
+  });
+  const [initialNotificationProcessed, setInitialNotificationProcessed] =
+    useState(false);
+  
+ const notify = () => {
+ 
+  toast(<ToastDisplay />);
+ }
   function ToastDisplay() {
     return (
       <div>
@@ -17,22 +28,25 @@ const Notification = () => {
   }
 
   useEffect(() => {
-    if (notification?.title) {
+    if (initialNotificationProcessed) {
       notify();
     }
-  }, [notification]);
-  requestForToken();
+  }, [notification, initialNotificationProcessed]);
+  useEffect(() => {
+    requestForToken();
 
-  onMessageListener()
-    .then((payload) => {
-      setNotification({
-        title: payload?.notification?.title,
-        body: payload?.notification?.body,
-      });
-    })
-    .catch((err) => console.log("failed: ", err));
-
+    onMessageListener()
+      .then((payload) => {
+        setNotification({
+          title: payload?.notification?.title,
+          body: payload?.notification?.body,
+        });
+        setInitialNotificationProcessed(true);
+      })
+      .catch((err) => console.log("failed: ", err));
+  }, []);
   return <Toaster />;
 };
 
 export default Notification;
+

@@ -11,12 +11,12 @@ function ILostAPet() {
   const [location, setLocation] = useState("");
   const [time, setTime] = useState("");
   //let ownersID = "";
-  //let ownersFCMID = fcmid;
+  let ownersFCMID = fcmid;
   const navigate = useNavigate();
 
   async function LostPetForm(e) {
     e.preventDefault();
-    let lostPet = { name, description, photo, location, time };
+    let lostPet = { name, description, photo, location, time, ownersFCMID };
 
     const token = localStorage.getItem("token");
     await axios.post("http://localhost:8000/auth/lostpet", lostPet, {
