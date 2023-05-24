@@ -11,7 +11,7 @@ const registeredUser = (req, res) => {
         email: req.body.email,
         password: hashedPass,
         // ownersid: req.body.ownersid,
-        ownersFCMID: req.body.ownersFCMID
+        ownersFCMID: req.body.ownersFCMID,
       });
       user
         .save()

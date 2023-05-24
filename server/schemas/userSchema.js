@@ -7,7 +7,11 @@ const userSchema = new mongoose.Schema({
     unique: [true, "Email already exists"],
     required: [true, "Email is required"],
   },
-  password: { type: String, required: [true, "Password is required"] },
+  password: {
+    type: String,
+    required: [true, "Password is required"],
+    // minLength: [6, "minimum password length is 6"]
+  },
   //ownersid: String,
   ownersFCMID: String,
 });

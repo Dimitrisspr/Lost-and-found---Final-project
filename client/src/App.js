@@ -1,4 +1,4 @@
-import Notification from "./Components/Notification";
+//import Notification from "./Components/Notification";
 import "./Firebase";
 import Homepage from "./Components/FreeComponents/Homepage";
 import Register from "./Components/FreeComponents/Register";
@@ -17,7 +17,7 @@ function App() {
   
   return (
     <div>
-      <Notification />
+      {/* <Notification /> */}
       <Navbar />
       <div className="container">
         <Routes>

@@ -1,8 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import { fcmid } from "../../Firebase";
-import {Notification} from "../Notification";
+import Register, {email} from "../FreeComponents/Register";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
@@ -25,6 +24,9 @@ function LostPetsPage() {
     getAllLostPets();
   }, []);
 
+  function getEmail() {
+    console.log(email);
+  }
 
   return (
     <div>
@@ -32,14 +34,14 @@ function LostPetsPage() {
         <div key={pet.id}>
           <p>{pet.name}</p>
           <p>{pet.description}</p>
-          <img src={pet.photo} width={200} height={200}/>
+          <img src={pet.photo} width={200} height={200} />
           <p>{pet.location}</p>
           <p>{pet.time}</p>
 
           {/* Add more fields as needed */}
-          <button >i found this pet!</button>
         </div>
       ))}
+      <button onClick={getEmail}>i found this pet!</button>
     </div>
   );
 }
