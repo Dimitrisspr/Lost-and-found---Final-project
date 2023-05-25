@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import Register, {email} from "../FreeComponents/Register";
+//import jwt_decode from "jwt-decode";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
@@ -11,6 +11,10 @@ function LostPetsPage() {
     if (!token) {
       return;
     }
+    // const decodedToken = jwt_decode(token);
+    // const email = decodedToken.email;
+    //console.log(email);
+   //setEmail(email);
 
     const response = await axios.get("http://localhost:8000/auth/getLostPets", {
       headers: {
@@ -24,8 +28,13 @@ function LostPetsPage() {
     getAllLostPets();
   }, []);
 
-  function getEmail() {
-    console.log(email);
+
+  function SendEmail() {
+    
+    axios
+      .post("http://localhost:8000/send_email")
+      .then(() => alert("message sent"))
+      .catch(() => alert("didn't sent"));
   }
 
   return (
@@ -38,10 +47,9 @@ function LostPetsPage() {
           <p>{pet.location}</p>
           <p>{pet.time}</p>
 
-          {/* Add more fields as needed */}
+          <button onClick={SendEmail}>I found this pet!</button>
         </div>
       ))}
-      <button onClick={getEmail}>i found this pet!</button>
     </div>
   );
 }

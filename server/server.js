@@ -10,48 +10,63 @@ app.use(express.json());
 app.use(cors());
 app.use("/", freeRoutes);
 app.use("/auth", verifyToken, protectedRoutes);
-const bodyParser = require('body-parser');
-app.use(bodyParser.json({limit: "50mb"}));
-app.use(bodyParser.urlencoded({limit: "100mb", extended: true, parameterLimit:50000}));
+const bodyParser = require("body-parser");
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "100mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
+
+require("./controllers/lostPetController")
+const nodemailer = require("nodemailer");
+require("dotenv").config();
+const myEmail = process.env.myEmail;
+const myPass = process.env.myPass;
 
 
-// let FCM = require("fcm-node");
-// let serverKey =
-//   "AAAAThRKaEM:APA91bG0phclU84Ut5O4sD1EqW6WIhgpDfY4HbqCcUA1Cr-z7_MnO2JKyDHXmrdBE9ItA67tnM9k1RX350GCu5zr1Yos8DgOuQx15x5e1wxArE1jJQVntfJjgiZYr6w6sdhPiD0itju_";
-// let fcm = new FCM(serverKey);
+function sendmail() {
 
-// app.post("/test", async (req, res) => {
-//   try {
-//     let message = {
-//       to: "cgJhLN157NmmVw56dCx91y:APA91bEgKGjCgiF4Yann5ribqf3pDJeDyk8OC1gCKQCzSQXMGNjbM0S9yfjqgfJqtxu72KwiXFw3A_0SY1YRKNQX1INqxCf16n04PaWH9UTzYnrZGCp54yCX4e-UB33y9zhsvIlGSuyd",
-      
-//       notification: {
-//         title: "Pet found",
-//         body: "Your pet is found!",
-//       },
+  return new Promise((resolve, reject) => {
+    const transporter = nodemailer.createTransport({
+      service: "hotmail",
+      auth: {
+        user: myEmail,
+        pass: myPass,
+      },
+    });
 
-//       data: {
-//         //you can send only notification or only data(or include both)
-//         title: "ok !",
-//         body: '{"name" : "ok google ogrlrl","product_id" : "123","final_price" : "0.00035"}',
-//       },
-//     };
+    const options = {
+      from: myEmail,
+      to: ,
+      subject: "Pet found!",
+      text: "Hello, we would like to inform you that we found your pet. Please make sure to contact us and come pick up your pet",
+    };
+    console.log(lostModel);
 
-//     fcm.send(message, function (err, response) {
-//       if (err) {
-//         console.log("Something has gone wrong!" + err);
-//         console.log("Respponse:! " + response);
-//       } else {
-//         // showToast("Successfully sent with response");
-//         console.log("Successfully sent with response: ", response);
-//       }
-//     });
-//   } catch (error) {
-//     res.status(500).send(error);
-//     console.log(error);
-//   }
-// });
+    transporter.sendMail(options, function (err, info) {
+      if (err) {
+        console.log(err);
+        return reject({ message: "An error has occurred" });
+      }
+      return resolve({ message: "Email sent successfully" });
+    });
+  });
+}
 
+app.get("/", (req, res) => {
+  sendmail()
+    .then((response) => res.send(response.message))
+    .catch((error) => res.status(500).send(error.message));
+});
+
+app.post("/send_email", (req, res) => {
+  sendmail(req.body)
+    .then((response) => res.send(response.message))
+    .catch((error) => res.status(500).send(error.message));
+});
 
 app.listen(port, () => {
   console.log(`our server listens on port ${port}`);

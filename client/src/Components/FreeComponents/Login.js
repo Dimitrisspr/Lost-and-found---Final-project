@@ -8,7 +8,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   //const navigate = useNavigate()
   try {
     const refreshPage = () => {
@@ -57,6 +57,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             id="email"
+            
           />
           <label htmlFor="password">Password</label>
           <input
@@ -68,7 +69,9 @@ function Login() {
           />
           <button>Login</button>
         </form>
+        
       </div>
+      
     );
   } catch (error) {
     console.log(error);

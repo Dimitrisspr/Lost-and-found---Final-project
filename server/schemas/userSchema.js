@@ -10,10 +10,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
-    // minLength: [6, "minimum password length is 6"]
   },
-  //ownersid: String,
-  ownersFCMID: String,
 });
 
 module.exports = mongoose.model.User || mongoose.model("User", userSchema);

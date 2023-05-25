@@ -10,8 +10,6 @@ const registeredUser = (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: hashedPass,
-        // ownersid: req.body.ownersid,
-        ownersFCMID: req.body.ownersFCMID,
       });
       user
         .save()
@@ -37,6 +35,3 @@ const registeredUser = (req, res) => {
 };
 
 module.exports = registeredUser;
-
-// "cgJhLN157NmmVw56dCx91y:APA91bHGuh_JzlNpvxspXsaYd462yobGbnejQI672SYyAQgv7hCPdP_VOSUY7IfJYDqiNRfnyQxZiLtNpjU6_9aV7hpgmr2DEVcIHGwmchUNyJf3ZIXW004Hgq3jeop7YGumW9g-z6QV"
-// "cgJhLN157NmmVw56dCx91y:APA91bHGuh_JzlNpvxspXsaYd462yobGbnejQI672SYyAQgv7hCPdP_VOSUY7IfJYDqiNRfnyQxZiLtNpjU6_9aV7hpgmr2DEVcIHGwmchUNyJf3ZIXW004Hgq3jeop7YGumW9g-z6QV"
