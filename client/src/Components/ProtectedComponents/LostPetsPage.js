@@ -5,16 +5,16 @@ import { useState, useEffect } from "react";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
+  const token = localStorage.getItem("token");
 
   async function getAllLostPets() {
-    const token = localStorage.getItem("token");
     if (!token) {
       return;
     }
     // const decodedToken = jwt_decode(token);
     // const email = decodedToken.email;
     //console.log(email);
-   //setEmail(email);
+    //setEmail(email);
 
     const response = await axios.get("http://localhost:8000/auth/getLostPets", {
       headers: {
@@ -28,11 +28,13 @@ function LostPetsPage() {
     getAllLostPets();
   }, []);
 
-
   function SendEmail() {
-    
     axios
-      .post("http://localhost:8000/send_email")
+      .post("http://localhost:8000/auth/send_email", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => alert("message sent"))
       .catch(() => alert("didn't sent"));
   }
