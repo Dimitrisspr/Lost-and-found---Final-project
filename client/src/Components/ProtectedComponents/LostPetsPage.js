@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-//import jwt_decode from "jwt-decode";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
@@ -11,10 +10,6 @@ function LostPetsPage() {
     if (!token) {
       return;
     }
-    // const decodedToken = jwt_decode(token);
-    // const email = decodedToken.email;
-    //console.log(email);
-    //setEmail(email);
 
     const response = await axios.get("http://localhost:8000/auth/getLostPets", {
       headers: {
@@ -28,13 +23,15 @@ function LostPetsPage() {
     getAllLostPets();
   }, []);
 
-  function SendEmail() {
-    axios
-      .post("http://localhost:8000/auth/send_email", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+  async function SendEmail() {
+    await axios.post("http://localhost:8000/auth/send_email", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    );
+    console
+      .log(token)
       .then(() => alert("message sent"))
       .catch(() => alert("didn't sent"));
   }

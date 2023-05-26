@@ -3,11 +3,10 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const myEmail = process.env.myEmail;
 const myPass = process.env.myPass;
-const express = require("express");
-const app = express();
 
-function sendmail() {
-  return new Promise((resolve, reject) => {
+  const sendmail = async (req, res) => {
+    // const userEmail = req.user.email; 
+    // console.log(userEmail);
     const transporter = nodemailer.createTransport({
       service: "hotmail",
       auth: {
@@ -18,8 +17,7 @@ function sendmail() {
 
     const options = {
       from: myEmail,
-      to: "dima.tripola@gmail.com",
-      //to: req.user.email,
+      to: req.user.email,
       subject: "Pet found!",
       text: "Hello, we would like to inform you that we found your pet. Please make sure to contact us and come pick up your pet",
     };
@@ -27,11 +25,11 @@ function sendmail() {
     transporter.sendMail(options, function (err, info) {
       if (err) {
         console.log(err);
-        return reject({ message: "An error has occurred" });
+        return res.send({ message: "An error has occurred" });
       }
-      return resolve({ message: "Email sent successfully" });
+      return res.send({ message: "Email sent successfully" });
     });
-  });
+  ;
 }
 
 module.exports = sendmail;

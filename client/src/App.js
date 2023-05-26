@@ -30,6 +30,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/getLostPets" element={<LostPetsPage/>}/>
           <Route path="/getFoundPets" element={<FoundPetsPage/>}/>
+          <Route path="/send_email" element={<LostPetsPage/>}/>
           {/* {!token ? (
             <>
               <Route path="/" element={<Homepage />} />
