@@ -16,7 +16,7 @@ function ILostAPet() {
 
   async function LostPetForm(e) {
     e.preventDefault();
-    let lostPet = { name, description, photo, location, time, ownersFCMID };
+    let lostPet = { name, description, photo, location, time };
 
     const token = localStorage.getItem("token");
     await axios.post("http://localhost:8000/auth/lostpet", lostPet, {

@@ -1,12 +1,10 @@
-//const user = require("./controllers/lostPetController")
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 const myEmail = process.env.myEmail;
 const myPass = process.env.myPass;
 
   const sendmail = async (req, res) => {
-    // const userEmail = req.user.email; 
-    // console.log(userEmail);
+   
     const transporter = nodemailer.createTransport({
       service: "hotmail",
       auth: {
@@ -33,15 +31,3 @@ const myPass = process.env.myPass;
 }
 
 module.exports = sendmail;
-
-// app.get("/", (req, res) => {
-//   sendmail()
-//     .then((response) => res.send(response.message))
-//     .catch((error) => res.status(500).send(error.message));
-// });
-
-// app.post("/send_email", (req, res) => {
-//   sendmail(req.body)
-//     .then((response) => res.send(response.message))
-//     .catch((error) => res.status(500).send(error.message));
-// });

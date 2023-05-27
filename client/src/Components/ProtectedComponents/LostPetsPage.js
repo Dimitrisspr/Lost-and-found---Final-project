@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
+  const [modal, setModal] = useState(false);
   const token = localStorage.getItem("token");
 
   async function getAllLostPets() {
@@ -24,17 +25,27 @@ function LostPetsPage() {
   }, []);
 
   async function SendEmail() {
-    await axios.post("http://localhost:8000/auth/send_email", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    if (!token) {
+      return;
     }
-    );
-    console
-      .log(token)
+
+    await axios
+      .post(
+        "http://localhost:8000/auth/send_email",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then(() => alert("message sent"))
       .catch(() => alert("didn't sent"));
   }
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   return (
     <div>
@@ -45,12 +56,23 @@ function LostPetsPage() {
           <img src={pet.photo} width={200} height={200} />
           <p>{pet.location}</p>
           <p>{pet.time}</p>
-
-          <button onClick={SendEmail}>I found this pet!</button>
+          <button onClick={toggleModal} className="btn-modal">
+            I found this pet!
+          </button>
+          {modal && (
+            <div className="modal">
+              <div onClick={toggleModal} className="overlay">
+                <div className="modal-content">
+                  <h2>Hello world</h2>
+                   <p>lorem </p>
+                  <button onClick={toggleModal}>Close modal</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 }
-
 export default LostPetsPage;

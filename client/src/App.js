@@ -17,7 +17,6 @@ function App() {
   
   return (
     <div>
-      {/* <Notification /> */}
       <Navbar />
       <div className="container">
         <Routes>
@@ -31,21 +30,7 @@ function App() {
           <Route path="/getLostPets" element={<LostPetsPage/>}/>
           <Route path="/getFoundPets" element={<FoundPetsPage/>}/>
           <Route path="/send_email" element={<LostPetsPage/>}/>
-          {/* {!token ? (
-            <>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/adopt" element={<Adopt />} />
-            </>
-          ) : (
-            <>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/lostpet" element={<ILostAPet />} />
-              <Route path="/foundpet" element={<IFoundAPet />} />
-              <Route path="/logout" element={<Logout />} />
-            </>
-          )} */}
+       
         </Routes>
       </div>
     </div>
