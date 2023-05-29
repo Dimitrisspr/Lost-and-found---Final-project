@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+const bootstrap = require('bootstrap')
 
 function FoundPetsPage() {
   const [founds, setFounds] = useState([]);

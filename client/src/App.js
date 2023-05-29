@@ -1,5 +1,3 @@
-//import Notification from "./Components/Notification";
-import "./Firebase";
 import Homepage from "./Components/FreeComponents/Homepage";
 import Register from "./Components/FreeComponents/Register";
 import Login from "./Components/FreeComponents/Login";

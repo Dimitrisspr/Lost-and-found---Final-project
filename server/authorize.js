@@ -8,7 +8,7 @@ const verifyToken = async (req, res, next) => {
       res.status(401).send({ msg: "unauthorized " });
     }
     const token = await req.headers.authorization.split(" ")[1];
-    console.log(token);
+   // console.log(token);
     if (!token) {
      res.status(401).send({ msg: "Invalid token" });
     }

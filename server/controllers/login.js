@@ -17,7 +17,7 @@ const loggedin = async (req, res) => {
      return res.status(400).send("wrong password");
     } 
       const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY);
-      console.log(token);
+      //console.log(token);
       res.status(200).send(token)
     
   } catch (error) {

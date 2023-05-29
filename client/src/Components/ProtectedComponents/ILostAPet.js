@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fcmid } from "../../Firebase";
 
 function ILostAPet() {
   const [name, setName] = useState("");
@@ -10,8 +9,6 @@ function ILostAPet() {
   const [photo, setPhoto] = useState("");
   const [location, setLocation] = useState("");
   const [time, setTime] = useState("");
-  //let ownersID = "";
-  let ownersFCMID = fcmid;
   const navigate = useNavigate();
 
   async function LostPetForm(e) {

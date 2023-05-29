@@ -2,6 +2,7 @@ const lostModel = require("../schemas/iLostAPetSchema");
 
 const lostPet = async (req, res) => {
   const { name, description, photo, location, time } = req.body;
+
   const userEmail = req.user.email; 
   console.log(userEmail);
   try {
