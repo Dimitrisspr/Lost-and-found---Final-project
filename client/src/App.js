@@ -1,21 +1,21 @@
 import Homepage from "./Components/FreeComponents/Homepage";
 import Register from "./Components/FreeComponents/Register";
 import Login from "./Components/FreeComponents/Login";
-import Navbar from "./Components/FreeComponents/Navbar";
+import NavbarComp from "./Components/FreeComponents/Navbar";
 import IFoundAPet from "./Components/ProtectedComponents/IFoundAPet";
 import ILostAPet from "./Components/ProtectedComponents/ILostAPet";
 import Adopt from "./Components/FreeComponents/AdoptMe";
 import Logout from "./Components/ProtectedComponents/Logout";
 import LostPetsPage from "./Components/ProtectedComponents/LostPetsPage";
 import FoundPetsPage from "./Components/ProtectedComponents/FoundPetsPage";
-
 import { Routes, Route } from "react-router-dom";
+import AboutUs from "./Components/FreeComponents/AboutUs";
 
 function App() {
   
   return (
     <div>
-      <Navbar />
+      <NavbarComp />
       <div className="container">
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -28,7 +28,7 @@ function App() {
           <Route path="/getLostPets" element={<LostPetsPage/>}/>
           <Route path="/getFoundPets" element={<FoundPetsPage/>}/>
           <Route path="/send_email" element={<LostPetsPage/>}/>
-       
+          <Route path="/about_us" element={<AboutUs/>}/>
         </Routes>
       </div>
     </div>

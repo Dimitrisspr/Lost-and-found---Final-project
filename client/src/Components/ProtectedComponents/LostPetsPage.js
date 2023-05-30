@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
@@ -63,13 +62,13 @@ function LostPetsPage() {
             <img src={pet.photo} width={200} height={200} />
             <p>{pet.location}</p>
             <p>{pet.time}</p>
-            <button 
-              type="button" class="btn btn-primary"
+            <Button 
+              //type="button" className="btn btn-success"
               onClick={() => toggleModal(pet._id)}
-              className="btn-modal"
+              //className="btn-modal"
             >
               I found this pet!
-            </button>{" "}
+            </Button>{" "}
           </div>
         ))}
       </div>
