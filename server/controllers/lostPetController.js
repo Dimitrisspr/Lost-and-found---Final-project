@@ -1,7 +1,7 @@
 const lostModel = require("../schemas/iLostAPetSchema");
 
 const lostPet = async (req, res) => {
-  const { name, description, photo, location, time } = req.body;
+  const { name, description, photo, location, date, time } = req.body;
 
   const userEmail = req.user.email; 
   console.log(userEmail);
@@ -11,6 +11,7 @@ const lostPet = async (req, res) => {
       description,
       photo,
       location,
+      date,
       time,
       email: userEmail,
     });

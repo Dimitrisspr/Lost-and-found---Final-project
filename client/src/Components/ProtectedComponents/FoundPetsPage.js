@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const bootstrap = require('bootstrap')
+//const bootstrap = require('bootstrap')
 
 function FoundPetsPage() {
   const [founds, setFounds] = useState([]);
@@ -28,8 +28,8 @@ function FoundPetsPage() {
       {founds.map((pet) => (
         <div key={pet.id}>
           <p>{pet.description}</p>
-          <img src={pet.photo}width={200} height={200}/>
-          <p>{pet.location}</p>
+          <img src={pet.photo}width={200} height={200} alt="pet"/>
+          <p>{pet.location&&pet.location.lon&&pet.location.lat}</p>
           <p>{pet.time}</p>
         </div>
       ))}

@@ -19,7 +19,7 @@ function ILostAPet() {
 
   async function LostPetForm(e) {
     e.preventDefault();
-    let lostPet = { name, description, photo, location, time };
+    let lostPet = { name, description, photo, location, date, time };
 
     const token = localStorage.getItem("token");
     await axios.post("http://localhost:8000/auth/lostpet", lostPet, {
@@ -67,10 +67,10 @@ function ILostAPet() {
         <Form.Group controlId="formFileSm" className="mb-3">
           <Form.Label>Upload a photo of your pet</Form.Label>
           <Form.Control type="file" size="sm" onChange={covertToBase64} />
-          {photo == "" || photo == null ? (
+          {photo === "" || photo === null ? (
             ""
           ) : (
-            <img width={100} height={100} src={photo} />
+            <img width={100} height={100} src={photo} alt="pet"/>
           )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicLocation">

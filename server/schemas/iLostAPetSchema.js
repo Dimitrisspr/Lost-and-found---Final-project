@@ -5,6 +5,7 @@ const lostSchema = new mongoose.Schema({
   description: String,
   photo: String,
   location: String,
+  date: Object,
   time: String,
   email: String,
 });

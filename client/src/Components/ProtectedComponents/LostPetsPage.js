@@ -24,7 +24,7 @@ function LostPetsPage() {
 
   useEffect(() => {
     getAllLostPets();
-  }, []);
+  } );
 
   async function SendEmail() {
     if (!token) {
@@ -59,13 +59,15 @@ function LostPetsPage() {
           <div key={pet._id}>
             <p>{pet.name}</p>
             <p>{pet.description}</p>
-            <img src={pet.photo} width={200} height={200} />
+            <img src={pet.photo} width={200} height={200} alt="pet"/>
             <p>{pet.location}</p>
+            <p>{pet.date && pet.date.day && pet.date.month && pet.date.year ? `${pet.date.day}/${pet.date.month}/${pet.date.year}` : ""}</p>
+
+            {/* <p>{`${pet.date.day}/${pet.date.month}/${pet.date.year}`}</p> */}
             <p>{pet.time}</p>
+
             <Button 
-              //type="button" className="btn btn-success"
               onClick={() => toggleModal(pet._id)}
-              //className="btn-modal"
             >
               I found this pet!
             </Button>{" "}

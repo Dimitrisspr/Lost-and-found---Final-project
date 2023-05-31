@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const foundSchema = new mongoose.Schema({
   description: String,
   photo:  String,
-  location: String,
+  location: Object,
   time: String,
 })
 
