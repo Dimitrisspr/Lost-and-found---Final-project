@@ -1,7 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-//const bootstrap = require('bootstrap')
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardText,
+  MDBCardImage,
+} from "mdb-react-ui-kit";
 
 function FoundPetsPage() {
   const [founds, setFounds] = useState([]);
@@ -11,11 +16,14 @@ function FoundPetsPage() {
     if (!token) {
       return;
     }
-    const response = await axios.get("http://localhost:8000/auth/getFoundPets", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      "http://localhost:8000/auth/getFoundPets",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     setFounds(response.data);
   }
 
@@ -24,16 +32,35 @@ function FoundPetsPage() {
   }, []);
 
   return (
-    <div>
+    <>
       {founds.map((pet) => (
         <div key={pet.id}>
-          <p>{pet.description}</p>
-          <img src={pet.photo}width={200} height={200} alt="pet"/>
-          <p>{pet.location&&pet.location.lon&&pet.location.lat}</p>
-          <p>{pet.time}</p>
+          <MDBCard>
+            <MDBCardBody>
+              <MDBCardImage
+                src={pet.photo}
+                width={200}
+                height={200}
+                alt="pet"
+                fluid
+              />
+              <MDBCardText>
+                <i>Pets description: </i>
+                {pet.description}
+              </MDBCardText>
+              <MDBCardText>
+                <i>Pets latitude and longitude: </i>
+                {pet.location && `${pet.location.lat}, ${pet.location.lng}`}
+              </MDBCardText>
+              <MDBCardText>
+                <i>Time the pet was found: </i>
+                {pet.time}
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
         </div>
       ))}
-    </div>
+    </>
   );
 }
 

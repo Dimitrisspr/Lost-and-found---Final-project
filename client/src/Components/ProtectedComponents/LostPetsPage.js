@@ -1,7 +1,21 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+} from "mdb-react-ui-kit";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
@@ -24,7 +38,7 @@ function LostPetsPage() {
 
   useEffect(() => {
     getAllLostPets();
-  } );
+  });
 
   async function SendEmail() {
     if (!token) {
@@ -54,47 +68,66 @@ function LostPetsPage() {
 
   return (
     <>
-      <div>
-        {lost.map((pet) => (
-          <div key={pet._id}>
-            <p>{pet.name}</p>
-            <p>{pet.description}</p>
-            <img src={pet.photo} width={200} height={200} alt="pet"/>
-            <p>{pet.location}</p>
-            <p>{pet.date && pet.date.day && pet.date.month && pet.date.year ? `${pet.date.day}/${pet.date.month}/${pet.date.year}` : ""}</p>
+      {lost.map((pet) => (
+        <div key={pet._id}>
+          <MDBCard>
+            <MDBCardBody>
+              <MDBCardImage
+                src={pet.photo}
+                width={200}
+                height={200}
+                alt="pet"
+                fluid
+              />
+              <MDBCardTitle>{pet.name}</MDBCardTitle>
+              <MDBCardText>{pet.description}</MDBCardText>
+              <MDBCardText>{pet.location}</MDBCardText>
+              <MDBCardText>
+                {" "}
+                {pet.date && pet.date.day && pet.date.month && pet.date.year
+                  ? `${pet.date.day}/${pet.date.month}/${pet.date.year}`
+                  : ""}
+              </MDBCardText>
+              <MDBCardText>{pet.time}</MDBCardText>
+              <MDBBtn onClick={() => toggleModal(pet._id)}>
+                I found this pet!
+              </MDBBtn>
+            </MDBCardBody>
+          </MDBCard>
+        </div>
+      ))}
+      <MDBModal show={modal} setShow={setModal} tabIndex="-1">
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Warning</MDBModalTitle>
+              <MDBBtn
+                className="btn-close"
+                color="none"
+                onClick={toggleModal}
+              ></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              Pressing the button will send an email to the pets owner.Before
+              you press the button make sure you have the right pet.
+            </MDBModalBody>
 
-            {/* <p>{`${pet.date.day}/${pet.date.month}/${pet.date.year}`}</p> */}
-            <p>{pet.time}</p>
-
-            <Button 
-              onClick={() => toggleModal(pet._id)}
-            >
-              I found this pet!
-            </Button>{" "}
-          </div>
-        ))}
-      </div>
-      {modal && (
-        <div className="modal">
-          <div onClick={toggleModal} className="overlay">
-            <div className="modal-content">
-              <h2>Are you sure its the same pet?</h2>
-              <p>
-                Before you press the button please make sure you have the right
-                pet!{" "}
-              </p>
-              <button
+            <MDBModalFooter>
+              <MDBBtn color="secondary" onClick={toggleModal}>
+                Close
+              </MDBBtn>
+              <MDBBtn
                 onClick={() => {
-                  toggleModal();
                   SendEmail();
+                  toggleModal();
                 }}
               >
-                Yes send the e-mail!
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+                Send the email
+              </MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </>
   );
 }

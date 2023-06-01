@@ -67,6 +67,10 @@ function Register() {
           <Button variant="primary" type="submit">
             Register
           </Button>
+          <br/><br/>
+          <Form.Group className="mb-2" controlId="formBasicBtn">
+            <Form.Label><small class="text-muted">Already registered?<br/><a href="/login">Login</a></small> </Form.Label>
+          </Form.Group>
         </Form>
       </>
     );
