@@ -67,72 +67,82 @@ function IFoundAPet() {
 
   return (
     <>
-      <Form onSubmit={petFound}>
-        <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            type="textarea"
-            placeholder="Describe the pet here"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formFileSm" className="mb-3">
-          <Form.Label>Upload photo</Form.Label>
-          <Form.Control type="file" size="sm" onChange={covertToBase64} />
-          {photo === "" || photo === null ? (
-            ""
-          ) : (
-            <img width={100} height={100} src={photo} alt="pet" />
-          )}
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicMap">
-          <Form.Label>Where did you find this pet?</Form.Label>
-          <Form.Control
-            type="map"
-            value={JSON.stringify(location)}
-            onChange={(e) => setLocation(JSON.parse(e.target.value))}
-          />
-          <MapContainer
-            className="map"
-            style={{ width: "250px", height: "250px" }}
-            center={center}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      <div className="page-container">
+        <Form
+          onSubmit={petFound}
+          className="text-center"
+          style={{ maxWidth: "400px", margin: "0 auto" }}
+        >
+          <Form.Label>
+            <h3>Declare the found pet</h3>
+          </Form.Label>
+
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              type="textarea"
+              placeholder="Describe the pet here"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
-            <Marker
-              draggable={draggable}
-              eventHandlers={eventHandlers}
-              position={location}
-              ref={markerRef}
+          </Form.Group>
+          <Form.Group controlId="formFileSm" className="mb-3">
+            <Form.Label>Upload photo</Form.Label>
+            <Form.Control type="file" size="sm" onChange={covertToBase64} />
+            {photo === "" || photo === null ? (
+              ""
+            ) : (
+              <img width={100} height={100} src={photo} alt="pet" />
+            )}
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicMap">
+            <Form.Label>Where did you find this pet?</Form.Label>
+            <Form.Control
+              type="map"
+              value={JSON.stringify(location)}
+              onChange={(e) => setLocation(JSON.parse(e.target.value))}
+            />
+            <MapContainer
+              className="map"
+              style={{ width: "250px", height: "250px" }}
+              center={center}
+              zoom={13}
+              scrollWheelZoom={false}
             >
-              <Popup minWidth={90}>
-                <span onClick={toggleDraggable}>
-                  {draggable
-                    ? "Marker is draggable"
-                    : "Click here to make marker draggable"}
-                </span>
-              </Popup>
-            </Marker>
-          </MapContainer>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicTime">
-          <Form.Label>Time</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="When you found this pet?"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Upload
-        </Button>
-      </Form>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker
+                draggable={draggable}
+                eventHandlers={eventHandlers}
+                position={location}
+                ref={markerRef}
+              >
+                <Popup minWidth={90}>
+                  <span onClick={toggleDraggable}>
+                    {draggable
+                      ? "Marker is draggable"
+                      : "Click here to make marker draggable"}
+                  </span>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicTime">
+            <Form.Label>Time</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="When you found this pet?"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Upload
+          </Button>
+        </Form>
+      </div>
     </>
   );
 }

@@ -1,5 +1,7 @@
-function Homepage() {
+import React from "react";
+import "./HomepageStyle.css";
 
+function Homepage() {
   return (
     <div>
       <h1>
@@ -7,6 +9,7 @@ function Homepage() {
         found a missing pet.
       </h1>
       <h2> Help us to find your pet!</h2>
+      <div className="bg" />
     </div>
   );
 }

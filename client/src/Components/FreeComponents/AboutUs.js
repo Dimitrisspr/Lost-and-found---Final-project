@@ -1,7 +1,11 @@
+import React from "react";
+import "./HomepageStyle.css";
+
 function AboutUs() {
   return (
   <div>
-    <p>We are a non profit organization that tries to help people that lost their pets. </p>
+    <h3>We are a non profit organization that tries to help people that lost their pets. </h3>
+    <div className="bg1" />
   </div>
     );
 }

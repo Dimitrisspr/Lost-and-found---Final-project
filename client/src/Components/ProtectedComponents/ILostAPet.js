@@ -45,7 +45,13 @@ function ILostAPet() {
 
   return (
     <>
-      <Form onSubmit={LostPetForm}>
+    <div className="page-container">
+      <Form
+        onSubmit={LostPetForm}
+        className="text-center"
+        style={{ maxWidth: "400px", margin: "0 auto" }}
+      >
+        <Form.Label><h3>Declare your lost pet</h3></Form.Label>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Pets Name</Form.Label>
           <Form.Control
@@ -70,7 +76,7 @@ function ILostAPet() {
           {photo === "" || photo === null ? (
             ""
           ) : (
-            <img width={100} height={100} src={photo} alt="pet"/>
+            <img width={100} height={100} src={photo} alt="pet" />
           )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicLocation">
@@ -101,6 +107,7 @@ function ILostAPet() {
           Upload
         </Button>
       </Form>
+      </div>
     </>
   );
 }
