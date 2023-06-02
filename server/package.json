@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "push": "node fcm.js"
+    "push": "node fcm.js",
+    "build": "npm i"
   },
   "keywords": [],
   "author": "",
