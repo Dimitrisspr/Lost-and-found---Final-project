@@ -97,6 +97,7 @@ function IFoundAPet() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicMap">
             <Form.Label>Where did you find this pet?</Form.Label>
+            
             <Form.Control
               type="map"
               value={JSON.stringify(location)}
