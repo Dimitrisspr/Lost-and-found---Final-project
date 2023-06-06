@@ -31,11 +31,11 @@ function ILostAPet() {
   }
 
   function covertToBase64(e) {
-    console.log(e);
+   // console.log(e);
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      console.log(reader.result);
+      //console.log(reader.result);
       setPhoto(reader.result);
     };
     reader.onerror = (error) => {

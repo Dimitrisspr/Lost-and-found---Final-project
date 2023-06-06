@@ -5,6 +5,8 @@ const foundSchema = new mongoose.Schema({
   photo:  String,
   location: Object,
   time: String,
+  email: String,
+
 })
 
 const foundModel = mongoose.model("found", foundSchema)

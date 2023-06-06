@@ -2,12 +2,15 @@ const foundModel = require("../schemas/iFoundAPetSchema");
 
 const foundPet = async (req, res)=>{
   const {description, photo, location, time} = req.body;
+  const userEmail = req.user.email; 
+
 try {
   await foundModel.create({
     description,
     photo,
     location,
     time,
+    email: userEmail
   })
   res.send({msg: "found pet form completed"})
 } catch (error) {
