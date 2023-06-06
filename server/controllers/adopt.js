@@ -1,11 +1,10 @@
 const adoptModel = require("../schemas/adoptSchema");
 
 const postAdoptPet = async (req, res) => {
-  const { image, contentType, description } = req.body;
+  const {  description } = req.body;
   try {
     await adoptModel.create({
-      image,
-      contentType,
+    
       description,
     });
     res.send("card reacted successfully");
@@ -24,5 +23,6 @@ const getAdoptPet = async (req, res)=>{
   }
 }
 
+//module.exports = {getAdoptPet, postAdoptPet};
+module.exports = getAdoptPet
 module.exports = postAdoptPet;
-module.exports = getAdoptPet;
