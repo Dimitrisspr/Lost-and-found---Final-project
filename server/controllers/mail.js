@@ -24,6 +24,7 @@ const sendmail = async (req, res) => {
 
   const options = {
     from: myEmail,
+    //to: "dima.tripola@gmail.com",
     to: userEmail,
     subject: "Pet found!",
     text: "Hello, we would like to inform you that we found your pet. Please make sure to contact us and come pick up your pet",
@@ -41,40 +42,40 @@ const sendmail = async (req, res) => {
   });
 };
 
-// const sendmailFound = async (req, res) => {
+const sendmailFound = async (req, res) => {
 
-//   console.log(req.body.petId);
-//   let foundPetInfo = await foundModel.findOne({_id: req.body.petId})
-//   console.log("founders info", foundPetInfo.email);
-//   const userEmailFound = foundPetInfo.email;
+  console.log(req.body.petId);
+  let foundPetInfo = await foundModel.findOne({_id: req.body.petId})
+  console.log("founders info", foundPetInfo.email);
+ const userEmailFound = foundPetInfo.email;
 
 
-//   const transporter = nodemailer.createTransport({
-//     service: "hotmail",
-//     auth: {
-//       user: myEmail,
-//       pass: myPass,
-//     },
-//   });
+  const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+      user: myEmail,
+      pass: myPass,
+    },
+  });
 
-//   const options = {
-//     from: myEmail,
-//     to: userEmailFound,
-//     subject: "Thats my pet!",
-//     text: "Hello, we would like to inform you that the owner of the pet you found searched for it",
-//   };
-//   console.log(userEmailFound);
+  const options = {
+    from: myEmail,
+    //to: "dima.tripola@gmail.com",
+    to: userEmailFound,
+    subject: "Thats my pet!",
+    text: "Hello, we would like to inform you that the owner of the pet you found searched for it",
+  };
+ console.log(userEmailFound);
 
 
   
-//   transporter.sendmailFound(options, function (err, info) {
-//     if (err) {
-//       console.log(err);
-//       return res.send({ message: "An error has occurred" });
-//     }
-//     return res.send({ message: "Email sent successfully" });
-//   });
-// };
+  transporter.sendMail(options, function (err, info) {
+    if (err) {
+      console.log(err);
+      return res.send({ message: "An error has occurred" });
+    }
+    return res.send({ message: "Email sent successfully" });
+  });
+};
 
-module.exports = sendmail;
-//module.exports = sendmailFound;
+module.exports = {sendmail, sendmailFound};

@@ -4,7 +4,7 @@ import "./HomepageStyle.css";
 function AboutUs() {
   return (
   <div>
-    <h3>We are a non profit organization that tries to help people that lost their pets. </h3>
+    <p class="h3">We are a non profit organization that tries to help people that lost their pets. Your cooperation is essential for finding the lost pets and reunite them with their families.</p>
     <div className="bg1" />
   </div>
     );

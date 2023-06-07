@@ -68,6 +68,8 @@ function LostPetsPage() {
 
   return (
     <>
+        <p class="h3">Here the lost pets are displayed. If you found any of these pets press the button and the owner of the pet will be informed by email</p>
+
       {lost.map((pet) => (
         <div key={pet._id}>
           <MDBCard>
@@ -89,10 +91,10 @@ function LostPetsPage() {
                   : ""}
               </MDBCardText>
               <MDBCardText>{pet.time}</MDBCardText>
-              <MDBBtn onClick={() => toggleModal(pet._id)}>
-                I found this pet!
-              </MDBBtn>
             </MDBCardBody>
+            <MDBBtn onClick={() => toggleModal(pet._id)}>
+              I found this pet!
+            </MDBBtn>
           </MDBCard>
         </div>
       ))}

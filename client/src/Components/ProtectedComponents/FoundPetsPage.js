@@ -50,7 +50,7 @@ function FoundPetsPage() {
 
     await axios
       .post(
-        "http://localhost:8000/auth/send_email",
+        "http://localhost:8000/auth/sendmailFound",
         { petId: petId },
         {
           headers: {
@@ -70,6 +70,7 @@ function FoundPetsPage() {
   };
   return (
     <>
+    <p class="h3">Here you can see the pets that have already been found by other people. If any of these is your pet make sure to press the button so the founder of the pet can get informed</p>
       {founds.map((pet) => (
         <div key={pet._id}>
           <MDBCard>

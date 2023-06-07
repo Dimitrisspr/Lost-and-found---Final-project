@@ -74,7 +74,7 @@ function IFoundAPet() {
           style={{ maxWidth: "400px", margin: "0 auto" }}
         >
           <Form.Label>
-            <h3>Declare the found pet</h3>
+            <h3>Declare the pet you found</h3>
           </Form.Label>
 
           <Form.Group className="mb-3" controlId="formBasicName">
