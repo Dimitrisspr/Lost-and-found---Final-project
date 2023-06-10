@@ -4,6 +4,8 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config";
+
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -21,10 +23,12 @@ function Login() {
 
       let loggedIn = { username, email, password };
 
-      const response = await axios.post(
-        "http://localhost:8000/login",
-        loggedIn
-      );
+      // const response = await axios.post(
+      //   "http://localhost:8000/login",
+      //   loggedIn
+      // );
+      const response = await axios.post(`${API_URL}/login`, loggedIn);
+
       if (response) {
         alert("logged in");
         navigate("/")

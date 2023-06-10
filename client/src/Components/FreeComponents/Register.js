@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./HomepageStyle.css";
+import API_URL from "../config";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -18,10 +19,12 @@ function Register() {
       let newUser = { username, email, password };
       //console.log(email);
 
-      let response = await axios.post(
-        "http://localhost:8000/register",
-        newUser
-      );
+      // let response = await axios.post(
+      //   API_URL,
+      //   newUser
+      // );
+
+      const response = await axios.post(`${API_URL}/register`, newUser);
       if (response) {
         alert("Registered Successfully");
       } else {
