@@ -8,6 +8,7 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet";
 import { Popup } from "react-leaflet";
+import API_URL from "../config";
 
 const center = {
   lat: 40.629269,
@@ -43,11 +44,17 @@ function IFoundAPet() {
 
     const token = localStorage.getItem("token");
     const foundpet = { description, photo, location, time };
-    await axios.post("http://localhost:8000/auth/foundpet", foundpet, {
+
+    await axios.post(`${API_URL}/auth/foundpet`, foundpet, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token},`,
       },
     });
+    // await axios.post("http://localhost:8000/auth/foundpet", foundpet, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
     navigate("/getFoundPets");
 
     console.log(foundpet);
@@ -97,7 +104,7 @@ function IFoundAPet() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicMap">
             <Form.Label>Where did you find this pet?</Form.Label>
-            
+
             <Form.Control
               type="map"
               value={JSON.stringify(location)}

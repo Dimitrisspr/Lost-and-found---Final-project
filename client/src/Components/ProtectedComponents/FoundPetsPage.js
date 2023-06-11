@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import API_URL from "../config";
 
 import {
   MDBCard,
@@ -28,14 +29,20 @@ function FoundPetsPage() {
     if (!token) {
       return;
     }
-    const response = await axios.get(
-      "http://localhost:8000/auth/getFoundPets",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${API_URL}/auth/getFoundPets`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // const response = await axios.get(
+    //   "http://localhost:8000/auth/getFoundPets",
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
     setFounds(response.data);
   }
 
@@ -50,7 +57,7 @@ function FoundPetsPage() {
 
     await axios
       .post(
-        "http://localhost:8000/auth/sendmailFound",
+        `${API_URL}/auth/sendmailFound`,
         { petId: petId },
         {
           headers: {
@@ -58,6 +65,16 @@ function FoundPetsPage() {
           },
         }
       )
+      
+      // (
+      //   "http://localhost:8000/auth/sendmailFound",
+      //   { petId: petId },
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // )
       .then(() => alert("Email sent"))
       .catch(() => alert("Could not send email"));
   }
@@ -70,7 +87,11 @@ function FoundPetsPage() {
   };
   return (
     <>
-    <p class="h3">Here you can see the pets that have already been found by other people. If any of these is your pet make sure to press the button so the founder of the pet can get informed</p>
+      <p class="h3">
+        Here you can see the pets that have already been found by other people.
+        If any of these is your pet make sure to press the button so the founder
+        of the pet can get informed
+      </p>
       {founds.map((pet) => (
         <div key={pet._id}>
           <MDBCard>
