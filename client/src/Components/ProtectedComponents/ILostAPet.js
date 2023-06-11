@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
@@ -16,7 +16,7 @@ function ILostAPet() {
   const [date, setDate] = useState(null);
   const [time, setTime] = useState("");
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   async function LostPetForm(e) {
     e.preventDefault();
@@ -28,21 +28,14 @@ function ILostAPet() {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    // await axios.post("http://localhost:8000/auth/lostpet", lostPet, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-    navigate("/getLostPets");
+    window.location.href = "/getLostPets"
+  
   }
 
   function covertToBase64(e) {
-    // console.log(e);
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      //console.log(reader.result);
       setPhoto(reader.result);
     };
     reader.onerror = (error) => {
