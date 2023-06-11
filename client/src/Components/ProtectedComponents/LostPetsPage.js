@@ -16,6 +16,7 @@ import {
   MDBModalBody,
   MDBModalFooter,
 } from "mdb-react-ui-kit";
+import API_URL from "../config";
 
 function LostPetsPage() {
   const [lost, setLost] = useState([]);
@@ -28,11 +29,17 @@ function LostPetsPage() {
       return;
     }
 
-    const response = await axios.get("http://localhost:8000/auth/getLostPets", {
+    const response = await axios.get(`${API_URL}/auth/getLostPets`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
+    // const response = await axios.get("http://localhost:8000/auth/getLostPets", {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
     setLost(response.data);
   }
 
@@ -45,9 +52,12 @@ function LostPetsPage() {
       return;
     }
 
+    // await axios
+    //   .post(
+    //     "http://localhost:8000/auth/send_email",
     await axios
       .post(
-        "http://localhost:8000/auth/send_email",
+        `${API_URL}/auth/send_email`,
         { petId: petId },
         {
           headers: {
@@ -68,7 +78,10 @@ function LostPetsPage() {
 
   return (
     <>
-        <p class="h3">Here the lost pets are displayed. If you found any of these pets press the button and the owner of the pet will be informed by email</p>
+      <p class="h3">
+        Here the lost pets are displayed. If you found any of these pets press
+        the button and the owner of the pet will be informed by email
+      </p>
 
       {lost.map((pet) => (
         <div key={pet._id}>
