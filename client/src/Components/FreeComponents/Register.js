@@ -23,9 +23,9 @@ function Register() {
       //   API_URL,
       //   newUser
       // );
-      const response = await axios.post("https://one1-6.onrender.com/register", newUser);
+      //const response = await axios.post("https://one1-6.onrender.com/register", newUser);
 
-     // const response = await axios.post(`${API_URL}/register`, newUser);
+     const response = await axios.post(`${API_URL}/register`, newUser);
       if (response) {
         alert("Registered Successfully");
       } else {
