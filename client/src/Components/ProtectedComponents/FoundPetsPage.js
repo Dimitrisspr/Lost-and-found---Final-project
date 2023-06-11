@@ -55,17 +55,14 @@ function FoundPetsPage() {
       return;
     }
 
-    await axios
-      .post(
-        `${API_URL}/auth/sendmailFound`,
-        { petId: petId },
+    await axios.post(`${API_URL}/auth/sendmailFound`, { petId: petId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       )
-      
+
       // (
       //   "http://localhost:8000/auth/sendmailFound",
       //   { petId: petId },

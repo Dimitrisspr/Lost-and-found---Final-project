@@ -47,7 +47,7 @@ function IFoundAPet() {
 
     await axios.post(`${API_URL}/auth/foundpet`, foundpet, {
       headers: {
-        Authorization: `Bearer ${token},`,
+        Authorization: `Bearer ${token}`,
       },
     });
     // await axios.post("http://localhost:8000/auth/foundpet", foundpet, {
