@@ -19,6 +19,17 @@ The purpose of this app is to help pet owners that lost their pet reunite with t
 - JWT
 
 ## Website frames
-![Homepage Photo](Lost-and-found---Final-project\readmephotos\frontpage.png)
+### Front page
+![Homepage Photo](readmephotos/FrontPage.png)
 
+### Declare lost pet page
+![declare lost pet](readmephotos/lostpet.png)
 
+### Declare found pet
+![declare found pet](readmephotos/foundpet.png)
+
+### Found pet page
+![found pet](readmephotos/foundpetpage.png)
+
+### Send email
+![send email](readmephotos/popup.png)
