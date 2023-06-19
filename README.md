@@ -19,6 +19,6 @@ The purpose of this app is to help pet owners that lost their pet reunite with t
 - JWT
 
 ## Website frames
-![Homepage Photo](readmephotos\FrontPage.png)
+
 
 
