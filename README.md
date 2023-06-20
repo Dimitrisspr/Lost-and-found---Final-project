@@ -18,7 +18,7 @@ The purpose of this app is to help pet owners that lost their pet reunite with t
 - Nodemailer
 - JWT
 
-## Website frames
+## Images of the website
 ### Front page
 ![Homepage Photo](readmephotos/FrontPage.png)
 
