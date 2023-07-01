@@ -24,7 +24,6 @@ const sendmail = async (req, res) => {
 
   const options = {
     from: myEmail,
-    //to: "dima.tripola@gmail.com",
     to: userEmail,
     subject: "Pet found!",
     text: "Hello, we would like to inform you that we found your pet. Please make sure to contact us and come pick up your pet",
@@ -60,7 +59,6 @@ const sendmailFound = async (req, res) => {
 
   const options = {
     from: myEmail,
-    //to: "dima.tripola@gmail.com",
     to: userEmailFound,
     subject: "Thats my pet!",
     text: "Hello, we would like to inform you that the owner of the pet you found searched for it",

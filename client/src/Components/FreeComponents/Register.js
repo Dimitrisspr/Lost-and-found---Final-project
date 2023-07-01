@@ -17,13 +17,7 @@ function Register() {
     async function handleSubmit(e) {
       e.preventDefault();
       let newUser = { username, email, password };
-      //console.log(email);
-
-      // let response = await axios.post(
-      //   API_URL,
-      //   newUser
-      // );
-      //const response = await axios.post("https://one1-6.onrender.com/register", newUser);
+      
 
      const response = await axios.post(`${API_URL}/register`, newUser);
       if (response) {

@@ -4,7 +4,6 @@ const { foundPet, getFoundPets } = require("../controllers/foundPetController");
 const { lostPet, getLostPets } = require("../controllers/lostPetController");
 const authorize = require("../authorize");
 const {sendmail, sendmailFound} = require("../controllers/mail");
-//const sendmailFound = require("../controllers/mail");
 
 router.post("/foundpet", authorize, foundPet);
 router.post("/lostpet", authorize, lostPet);

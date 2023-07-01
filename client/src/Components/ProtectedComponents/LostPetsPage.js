@@ -35,11 +35,7 @@ function LostPetsPage() {
       },
     });
 
-    // const response = await axios.get("http://localhost:8000/auth/getLostPets", {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
+ 
     setLost(response.data);
   }
 
@@ -52,9 +48,7 @@ function LostPetsPage() {
       return;
     }
 
-    // await axios
-    //   .post(
-    //     "http://localhost:8000/auth/send_email",
+
     await axios
       .post(
         `${API_URL}/auth/send_email`,

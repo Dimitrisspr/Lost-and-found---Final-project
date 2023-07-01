@@ -50,11 +50,7 @@ function IFoundAPet() {
         Authorization: `Bearer ${token}`,
       },
     });
-    // await axios.post("http://localhost:8000/auth/foundpet", foundpet, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
+ 
     navigate("/getFoundPets");
 
     console.log(foundpet);

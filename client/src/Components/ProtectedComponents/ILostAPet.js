@@ -16,7 +16,6 @@ function ILostAPet() {
   const [date, setDate] = useState(null);
   const [time, setTime] = useState("");
 
-  //const navigate = useNavigate();
 
   async function LostPetForm(e) {
     e.preventDefault();

@@ -63,15 +63,7 @@ function FoundPetsPage() {
         }
       )
 
-      // (
-      //   "http://localhost:8000/auth/sendmailFound",
-      //   { petId: petId },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //   }
-      // )
+ 
       .then(() => alert("Email sent"))
       .catch(() => alert("Could not send email"));
   }
